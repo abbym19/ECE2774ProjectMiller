@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import Settings as s
 
+
 class Transformer:
 
     def __init__(self, name, power_rating, z_percent, voltage_ratio, winding, from_bus, to_bus):

@@ -23,10 +23,10 @@ class Bundling:
 
     def calculated_sc(self):
         if self.num_conductors == 2:
-            d_sc = np.sqrt(self.spacing * self.conductor_data.gmr)
+            d_sc = np.sqrt(self.spacing * self.conductor_data.diameter/2)
         elif self.num_conductors == 3:
-            d_sc = np.cbrt(np.power(self.spacing, 2)* self.conductor_data.gmr)
+            d_sc = np.cbrt(np.power(self.spacing, 2) * self.conductor_data.diameter/2)
         elif self.num_conductors == 4:
-            d_sc = 1.091 * np.power((np.power(self.spacing, 3) * self.conductor_data.gmr), 0.25)
+            d_sc = 1.091 * np.power((np.power(self.spacing, 3) * self.conductor_data.diameter/2), 0.25)
 
         return d_sc
