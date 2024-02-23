@@ -6,9 +6,10 @@ class Bus:
 
     counter = 0
 
-    def __init__(self, name):
+    def __init__(self, name, base_kv):
         self.name = name
         self.index = Bus.counter
+        self.base_kv = base_kv
 
         self.v = None
 

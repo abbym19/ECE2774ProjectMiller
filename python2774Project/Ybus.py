@@ -1,7 +1,10 @@
 import numpy as np
+from Bus import Bus
 
 
 class Ybus:
+
+    n = Bus.counter
 
     def __init__(self, n, buses, transmission_line):
         self.n = n
