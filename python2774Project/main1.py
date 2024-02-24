@@ -14,6 +14,7 @@ bus3 = Bus(name="Bus3", base_kv=None)
 bus4 = Bus(name="Bus4", base_kv=None)
 bus5 = Bus(name="Bus5", base_kv=None)
 bus6 = Bus(name="Bus6", base_kv=18)
+bus7 = Bus(name="Bus7", base_kv=220)
 
 # Create conductors
 
@@ -34,7 +35,7 @@ transformer_1 = Transformer(name="Transformer1", power_rating=125, z_percent=0.0
                             from_bus=bus1, to_bus=bus2)
 
 transformer_2 = Transformer(name="Transformer2", power_rating=200, z_percent=0.105, voltage_ratio=12, winding=None,
-                            from_bus=bus6, to_bus=None)
+                            from_bus=bus6, to_bus=bus7)
 
 # Create Transmission Line
 t_1 = TransmissionLine(name="Line1", line_length=10, from_bus=bus2, to_bus=bus4,

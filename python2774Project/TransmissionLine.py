@@ -16,6 +16,8 @@ class TransmissionLine:
         self.calculate_reactance()
         self.calculate_susceptance()
         self.calculate_series_impedance()
+        self.calculate_primitive_admittance_matrix()
+        self.calculate_shunt_admittance()
 
     def calculate_resistance(self):
         phase_resistance = self.conductor_data.sub_resistance / self.bundling.num_conductors * self.line_length
@@ -39,4 +41,13 @@ class TransmissionLine:
 
         return series_impedance
 
+    def calculate_primitive_admittance_matrix(self):
+        primitive_admittance_matrix = np.zeros((2, 2), dtype=complex)
 
+        # Fill in the diagonal elements with shunt susceptances
+        primitive_admittance_matrix[0, 0] = primitive_admittance_matrix[1, 1] = self.calculate_susceptance()
+
+    def calculate_shunt_admittance(self):
+        shunt_admittance = 1 / self.calculate_resistance() + 1j * self.calculate_susceptance()
+
+        return shunt_admittance
