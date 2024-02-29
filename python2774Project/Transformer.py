@@ -17,11 +17,12 @@ class Transformer:
         self.calculate_primitive_admittance_matrix()
 
     def calculate_zpu(self):
+        z_base = np.power(s.v_base, 2) / self.power_rating
         z_pu_magnitude = self.z_percent * s.s_mva / self.power_rating
         z_pu_angle = np.tan(self.voltage_ratio) * s.s_mva / self.power_rating
         z_pu = z_pu_magnitude * np.cos(z_pu_angle) + 1j * z_pu_magnitude * np.sin(z_pu_angle)
-
-        return z_pu
+        z = z_pu * z_base
+        return z
 
     def calculate_primitive_admittance_matrix(self):
 

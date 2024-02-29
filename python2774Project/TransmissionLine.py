@@ -1,10 +1,12 @@
 import numpy as np
 import Settings as s
-
+from ConductorData import ConductorData
+from Geometry import Geometry
+from Bundling import Bundling
 
 class TransmissionLine:
 
-    def __init__(self, name, line_length, from_bus, to_bus, conductor_data, conductor_geometry, bundling):
+    def __init__(self, name, line_length, from_bus, to_bus, conductor_data:ConductorData, conductor_geometry:Geometry, bundling: Bundling):
         self.name = name
         self.line_length = line_length
         self.from_bus = from_bus
@@ -44,8 +46,8 @@ class TransmissionLine:
     def calculate_primitive_admittance_matrix(self):
         primitive_admittance_matrix = np.zeros((2, 2), dtype=complex)
 
-        # Fill in the diagonal elements with shunt susceptances
-        primitive_admittance_matrix[0, 0] = primitive_admittance_matrix[1, 1] = self.calculate_susceptance()
+        primitive_admittance_matrix[0, 0] = primitive_admittance_matrix[1, 1] = self.calculate_series_impedance() + self.calculate_susceptance() / 2
+        primitive_admittance_matrix[0, 1] = primitive_admittance_matrix[1, 0] = -1 * self.calculate_series_impedance()
 
     def calculate_shunt_admittance(self):
         shunt_admittance = 1 / self.calculate_resistance() + 1j * self.calculate_susceptance()
