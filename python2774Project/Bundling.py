@@ -1,8 +1,9 @@
 import numpy as np
+from ConductorData import ConductorData
 
 
 class Bundling:
-    def __init__(self, name, num_conductors, spacing, conductor_data):
+    def __init__(self, name, num_conductors, spacing, conductor_data: ConductorData):
         self.name = name
         self.num_conductors = num_conductors
         self.spacing = spacing

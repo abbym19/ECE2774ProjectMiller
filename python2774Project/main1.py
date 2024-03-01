@@ -1,4 +1,3 @@
-import numpy as np
 from Bus import Bus
 from Transformer import Transformer
 from Bundling import Bundling
@@ -27,7 +26,7 @@ bundling_1 = Bundling(name="Bundling1", num_conductors=2, spacing=1.5, conductor
 
 # Create Geometry
 
-geometry_1 = Geometry(name="Geometry1", spacing=[0, 0, 1, 0, 1, 1])
+geometry_1 = Geometry(name="Geometry1", spacing=[9.75, 0, 19.5, 0, 29.25, 0])
 
 # Create Transformers
 
@@ -62,4 +61,26 @@ t_6 = TransmissionLine(name="Line6", line_length=35, from_bus=bus4, to_bus=bus5,
 
 num_buses = Bus.counter
 print(num_buses)
-Ybus = np.zeros((num_buses, num_buses), dtype=complex)
+
+print(transformer_1.calculate_zpu())
+
+print("ab = ", geometry_1.calculate_ab())
+print("bc = ", geometry_1.calculate_bc())
+print("ac = ", geometry_1.calculate_ac())
+print("Deq = ", geometry_1.calculated_eq())
+
+print("\nD_SL = ", bundling_1.calculated_sl())
+print("D_SC = ", bundling_1.calculated_sc())
+
+print("\nZ transformer 1 = ", transformer_1.calculate_zpu())
+print("Primitive admittance transformer 1 = ", transformer_1.calculate_primitive_admittance_matrix())
+
+print("\nZ transformer 2 = ", transformer_2.calculate_zpu())
+print("Primitive admittance transformer 2 = ", transformer_2.calculate_primitive_admittance_matrix())
+
+print("\nT1 Resistance = ", t_1.calculate_resistance())
+print("T1 Reactance = ", t_1.calculate_reactance())
+print("T1 Series Impedance = ", t_1.calculate_series_impedance())
+print("T1 Susceptance = ", t_1.calculate_susceptance())
+print("T1 Primitive Admittance = ", t_1.calculate_primitive_admittance_matrix())
+print("T1 Shunt Admittance = ", t_1.calculate_shunt_admittance())

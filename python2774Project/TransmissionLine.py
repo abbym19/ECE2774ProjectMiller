@@ -28,7 +28,7 @@ class TransmissionLine:
 
     def calculate_reactance(self):
         ln = self.conductor_geometry.calculated_eq() / self.bundling.calculated_sl()
-        x_p = 2 * np.pi * s.f * 2 * np.exp(-7) * np.log(ln) * 1609
+        x_p = 2 * np.pi * s.f * 2 * 10 ** -7 * np.log(ln) * 1609 * self.line_length
 
         return x_p
 
@@ -48,6 +48,8 @@ class TransmissionLine:
 
         primitive_admittance_matrix[0, 0] = primitive_admittance_matrix[1, 1] = self.calculate_series_impedance() + self.calculate_susceptance() / 2
         primitive_admittance_matrix[0, 1] = primitive_admittance_matrix[1, 0] = -1 * self.calculate_series_impedance()
+
+        return primitive_admittance_matrix
 
     def calculate_shunt_admittance(self):
         shunt_admittance = 1 / self.calculate_resistance() + 1j * self.calculate_susceptance()

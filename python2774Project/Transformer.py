@@ -1,11 +1,22 @@
-import pandas as pd
+# transformer class
+
 import numpy as np
 import Settings as s
+from Bus import Bus
 
 
 class Transformer:
 
-    def __init__(self, name, power_rating, z_percent, voltage_ratio, winding, from_bus, to_bus):
+    def __init__(self, name, power_rating, z_percent, voltage_ratio, winding, from_bus: Bus, to_bus: Bus):
+
+        # Ensure power_rating, z_percent, and voltage_ratio are positive values
+        if power_rating <= 0 or z_percent <= 0 or voltage_ratio <= 0:
+            raise ValueError("Power rating, z percent, and voltage ratio must be positive values.")
+
+        # Ensure from_bus and to_bus are not the same
+        if from_bus == to_bus:
+            raise ValueError("From bus and to bus must be different.")
+
         self.name = name
         self.power_rating = power_rating
         self.z_percent = z_percent
