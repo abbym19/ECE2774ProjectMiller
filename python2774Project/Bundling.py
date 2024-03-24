@@ -3,7 +3,7 @@ from ConductorData import ConductorData
 
 
 class Bundling:
-    def __init__(self, name, num_conductors, spacing, conductor_data: ConductorData):
+    def __init__(self, name: str, num_conductors: float, spacing: float, conductor_data: ConductorData):
         self.name = name
         self.num_conductors = num_conductors
         self.spacing = spacing

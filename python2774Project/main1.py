@@ -9,9 +9,9 @@ from TransmissionLine import TransmissionLine
 
 bus1 = Bus(name="Bus1", base_kv=20)
 bus2 = Bus(name="Bus2", base_kv=230)
-bus3 = Bus(name="Bus3", base_kv=None)
-bus4 = Bus(name="Bus4", base_kv=None)
-bus5 = Bus(name="Bus5", base_kv=None)
+bus3 = Bus(name="Bus3", base_kv=230)
+bus4 = Bus(name="Bus4", base_kv=230)
+bus5 = Bus(name="Bus5", base_kv=230)
 bus6 = Bus(name="Bus6", base_kv=230)
 bus7 = Bus(name="Bus7", base_kv=18)
 

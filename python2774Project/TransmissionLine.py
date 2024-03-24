@@ -3,14 +3,17 @@ import Settings as s
 from ConductorData import ConductorData
 from Geometry import Geometry
 from Bundling import Bundling
+from Bus import Bus
+
 
 class TransmissionLine:
 
-    def __init__(self, name, line_length, from_bus, to_bus, conductor_data:ConductorData, conductor_geometry:Geometry, bundling: Bundling):
+    def __init__(self, name: str, line_length: float, bus1: Bus, bus2: Bus, conductor_data: ConductorData,
+                 conductor_geometry: Geometry, bundling: Bundling):
         self.name = name
         self.line_length = line_length
-        self.from_bus = from_bus
-        self.to_bus = to_bus
+        self.bus1 = bus1
+        self.bus2 = bus2
         self.conductor_data = conductor_data
         self.conductor_geometry = conductor_geometry
         self.bundling = bundling

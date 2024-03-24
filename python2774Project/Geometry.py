@@ -5,7 +5,7 @@ import numpy as np
 
 class Geometry:
 
-    def __init__(self, name, spacing):
+    def __init__(self, name: str, spacing):
         self.name = name
         self.spacing = spacing
         self.calculate_ab()

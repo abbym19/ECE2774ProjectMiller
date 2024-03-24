@@ -1,29 +1,31 @@
 # transformer class
 
 import numpy as np
+import pandas as pd
 import Settings as s
 from Bus import Bus
 
 
 class Transformer:
 
-    def __init__(self, name, power_rating, z_percent, voltage_ratio, winding, from_bus: Bus, to_bus: Bus):
+    def __init__(self, name: str, power_rating: float, z_percent: float, voltage_ratio: float, bus1: Bus, bus2: Bus):
 
         # Ensure power_rating, z_percent, and voltage_ratio are positive values
         if power_rating <= 0 or z_percent <= 0 or voltage_ratio <= 0:
             raise ValueError("Power rating, z percent, and voltage ratio must be positive values.")
 
         # Ensure from_bus and to_bus are not the same
-        if from_bus == to_bus:
+        if bus1 == bus2:
             raise ValueError("From bus and to bus must be different.")
 
         self.name = name
         self.power_rating = power_rating
         self.z_percent = z_percent
         self.voltage_ratio = voltage_ratio
-        self.winding = winding
-        self.from_bus = from_bus
-        self.to_bus = to_bus
+        self.bus1 = bus1
+        self.bus2 = bus2
+        self.yprim = pd.DataFrame(np.zeros((2,2), dtype=complex), dtype=complex, index=[self.bus1, self.bus2],
+                                  columns=[self.bus1, self.bus2])
         self.calculate_zpu()
         self.calculate_primitive_admittance_matrix()
 
